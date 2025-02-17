@@ -9,6 +9,8 @@ int fibonacci(int n) {
     } else {
         return fibonacci(n-1) + fibonacci(n-2);
     }
+
+    std::string testStr;
 }
 
 int main() {
