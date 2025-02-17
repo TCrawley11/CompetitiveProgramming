@@ -14,7 +14,6 @@ int fibonacci(int n) {
 
 int main() {
     int f;
-    std::cout << "WHich Nth value of the fibonacci sequence do u want to see?" << '\n';
     std:: cin >> f; 
     std::cout << fibonacci(f) << "\n";
 }
