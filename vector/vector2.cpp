@@ -9,7 +9,7 @@ void dump(std::vector<int> v) {
     for (int i = 0; i < v.size() - 1; i++) {
         std::cout << v[i] << " ";
     }
-    std::cout << v[i+1] << std::endl;
+    std::cout << v[v.size() - 1] << std::endl;
 }
 
 int main() {
