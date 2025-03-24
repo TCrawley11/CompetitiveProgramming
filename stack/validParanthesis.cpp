@@ -1,45 +1,39 @@
-#include <cstddef>
 #include <iostream>
-#include <vector>
-#include <unordered_set>
 #include <stack>
 
-bool valid() {
-    std::unordered_set<char> open;
-    open.insert('(');
-    open.insert('{');
-    open.insert('[');
-
-    std::unordered_set<char> close;
-    close.insert(')');
-    close.insert('}');
-    close.insert(']');
-
-    std::string user_input;
-    std::cin >> user_input;
-
+bool isValid(std::string s) {
     std::stack<char> stk;
-
-    char last = '\0';
-    for (char c : user_input) {
-        if (open.find(c) != open.end()) { // push opening bracket onto stack
+    
+    for (char c : s) {
+        // If it's an opening bracket, push to stack
+        if (c == '(' || c == '{' || c == '[') {
             stk.push(c);
-        } else if (close.find(c) != close.end()) { 
-            if (stk.empty()) return false;
-        }
-        
-        char last = stk.top();
-        stk.pop();
-
-        if ((last == '(' && c != ')') || 
-            (last == '{' && c != '}') || 
-            (last == '[' && c != ']')) {
+        } 
+        // If it's a closing bracket
+        else {
+            // If stack is empty, no matching opening bracket
+            if (stk.empty()) {
                 return false;
             }
+            
+            // Check if the top of stack matches the current closing bracket
+            if ((c == ')' && stk.top() != '(') ||
+                (c == '}' && stk.top() != '{') ||
+                (c == ']' && stk.top() != '[')) {
+                return false;
+            }
+            
+            // Remove the matching opening bracket
+            stk.pop();
+        }
     }
+    
+    // Stack should be empty if all brackets are matched
     return stk.empty();
 }
 
 int main () {
-    std::cout << valid();
+    std:: string user_input;
+    std::cin >> user_input;
+    std::cout << isValid(user_input);
 } 
